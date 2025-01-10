@@ -1,0 +1,22 @@
+name: Restrict PRs to Main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-pr-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR source branch
+        env:
+          PR_SOURCE_BRANCH: ${{ github.head_ref }}
+        run: |
+          echo "Validating PR source branch: $PR_SOURCE_BRANCH"
+          if [[ ! "$PR_SOURCE_BRANCH" =~ ^release/.*$ ]]; then
+            echo "❌ Pull Requests to 'main' are only allowed from 'release/*' branches."
+            exit 1
+          fi
+          echo "✅ Pull Request source branch is valid."
