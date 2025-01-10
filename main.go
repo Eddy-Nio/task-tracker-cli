@@ -1,7 +1,11 @@
+/*
+Copyright © 2025 Eddy Nio
+
+*/
 package main
 
-import "fmt"
+import "github.com/Eddy-Nio/task-tracker-cli/cmd"
 
 func main() {
-	fmt.Println("Hola, mundo desde Go!")
+	cmd.Execute()
 }

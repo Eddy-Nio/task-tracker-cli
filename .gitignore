@@ -130,11 +130,6 @@ fabric.properties
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
@@ -146,6 +141,9 @@ fabric.properties
 # Ignore all local history of files
 .history
 .ionide
+
+#Json files
+*.json
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,go,goland+all
 
