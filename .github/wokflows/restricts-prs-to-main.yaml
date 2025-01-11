@@ -13,6 +13,7 @@ jobs:
       - name: Check PR source branch
         env:
           PR_SOURCE_BRANCH: ${{ github.head_ref }}
+        uses: actions/checkout@v3
         run: |
           echo "Validating PR source branch: $PR_SOURCE_BRANCH"
           if [[ ! "$PR_SOURCE_BRANCH" =~ ^release/.*$ ]]; then
@@ -20,3 +21,11 @@ jobs:
             exit 1
           fi
           echo "✅ Pull Request source branch is valid."
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        run: |
+          git tag ${{ github.ref_name }}
+          git push origin ${{ github.ref_name }}

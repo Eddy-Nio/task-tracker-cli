@@ -11,7 +11,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var title, description string
+var (
+	title, description string
+	testFile           string
+)
 
 // addCmd represents the add command
 var addCmd = &cobra.Command{
@@ -24,17 +27,22 @@ in a local JSON file. The unique identifier (UUID) for the task will be automati
 and the task will be marked as 'todo' by default.`,
 
 	Run: func(cmd *cobra.Command, args []string) {
-		storage, err := tasks.NewTaskStorage("tasks.json")
+		filename := "tasks.json"
+		if testFile != "" {
+			filename = testFile
+		}
+
+		storage, err := tasks.NewTaskStorage(filename)
 		if err != nil {
 			log.Fatalf("Error initializating storage file: %v", err)
 		}
 
-		task, err := storage.AddTask(title, description)
-		if err != nil {
+		if _, err := storage.AddTask(title, description); err != nil {
 			log.Fatalf("Error when adding a new task: %v", err)
 		}
 
-		fmt.Printf("Task added: %v", task)
+		fmt.Printf("Task added successfully:\n")
+		storage.PrintTasks()
 	},
 }
 
