@@ -138,8 +138,8 @@ storage:
   backupDir: "backups"      # Directory for automatic backups
 
 task:
-  maxTitleLength: 100       # Maximum length for task titles
-  maxDescriptionLength: 500 # Maximum length for task descriptions
+  maxTitleLength: 50       # Maximum length for task titles
+  maxDescriptionLength: 200 # Maximum length for task descriptions
   dateFormat: "2006-01-02"  # Date format for display
   autoBackup: true         # Enable/disable automatic backups
   backupInterval: 24h      # Interval between backups
